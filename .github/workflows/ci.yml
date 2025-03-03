@@ -3,11 +3,11 @@ name: Maven CI
 on:
   push:
     branches:
-      - main  # Runs on every push to 'main' branch
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use Ubuntu for build
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
@@ -20,8 +20,8 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
-      - name: Run Maven Clean
-        run: mvn clean
+      - name: Verify Maven Installation
+        run: mvn -version  # Debugging step
 
-      - name: Run Unit Tests
-        run: mvn test
+      - name: Run Maven Build
+        run: mvn clean install
